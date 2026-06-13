@@ -7,11 +7,12 @@ This repository is a static publishing system for civic-literacy material.
 - TypeScript.
 - Vue 3 Composition API.
 - Vite for static builds.
-- Markdown content loaded at build time.
+- `marked` for browser-side Markdown rendering.
+- Route-matching Markdown files generated at build time.
 - Bun for local scripts and GitHub Actions.
 - Cloudflare Pages for hosting.
 
-The site avoids runtime server dependencies. Pages are rendered as a static single-page app with route fallbacks for content routes.
+The site avoids runtime server dependencies. Each readable route is materialized as a physical `index.html` shell plus a route-matching Markdown file. For example, `/cards/who-benefits` serves `dist/cards/who-benefits/index.html`, and the frontend fetches `/cards/who-benefits.md`.
 
 ## Repository Layout
 
@@ -23,10 +24,27 @@ The site avoids runtime server dependencies. Pages are rendered as a static sing
 - `scripts/validate-content.ts`: validates Markdown frontmatter and body content.
 - `scripts/export-pdf.ts`: generates the v1 field-card print-pack placeholder.
 - `scripts/generate-manifest.ts`: writes `dist/release-manifest.json` with SHA-256 hashes.
-- `src/`: Vue site source.
-- `public/_redirects`: Cloudflare Pages SPA route fallbacks for Vue routes.
+- `src/`: a thin Vue site shell that fetches route Markdown and renders it with `marked`.
+- `public/_redirects`: intentionally contains no SPA fallback so `.md` route assets remain directly fetchable.
 - `public/_headers`: static response headers for Pages.
 - `.github/workflows/`: CI, Pages deploy, and release artefact workflows.
+
+## Markdown Routing
+
+The Vite build plugin in `vite.config.ts` writes:
+
+- `/index.md` for the homepage;
+- section index files such as `/cards.md`, `/chapters.md`, and `/governance.md`;
+- content route files such as `/cards/who-benefits.md`;
+- physical shell files such as `/cards/who-benefits/index.html`.
+
+The frontend computes the Markdown URL from the current route:
+
+```text
+/cards/who-benefits -> /cards/who-benefits.md
+```
+
+It then parses frontmatter with `yaml`, renders the body with `marked`, and inserts the resulting HTML into the page.
 
 ## Build Pipeline
 
@@ -35,8 +53,9 @@ The site avoids runtime server dependencies. Pages are rendered as a static sing
 1. Validate content frontmatter.
 2. Typecheck Vue and TypeScript.
 3. Build the static site.
-4. Generate the field-card print pack.
-5. Generate the release manifest.
+4. Generate route-matching Markdown files and physical route shells.
+5. Generate the field-card print pack.
+6. Generate the release manifest.
 
 ## Provenance
 
@@ -66,4 +85,4 @@ Deployment requires repository secrets:
 
 ## Source Inspection
 
-The Vite build copies `content/` and `governance/` into `dist/source/`. Rendered pages link to those copied Markdown files so readers can inspect page source even without browsing the GitHub repository.
+The Vite build copies `content/` and `governance/` into `dist/source/`. Rendered pages link to their route Markdown files, and the copied source tree remains available for provenance and comparison even without browsing the GitHub repository.

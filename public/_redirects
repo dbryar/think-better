@@ -1,11 +1,3 @@
-/cards / 200
-/chapters / 200
-/examples / 200
-/facilitator-notes / 200
-/governance / 200
-/downloads / 200
-/cards/* / 200
-/chapters/* / 200
-/examples/* / 200
-/facilitator-notes/* / 200
-/governance/* / 200
+# Routes are materialized as physical index.html files during the Vite build.
+# Keep this file intentionally empty of SPA fallbacks so route-matching .md
+# files such as /cards/who-benefits.md remain directly fetchable.

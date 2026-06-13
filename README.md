@@ -30,7 +30,7 @@ bun install
 bun run dev
 ```
 
-The local Vite site runs at the URL printed by the command, usually `http://localhost:5173`.
+The local Cloudflare Pages preview runs at `http://localhost:8788`. This command builds the route-matching Markdown files first, then serves `dist/` with Wrangler.
 
 Run the full local check:
 
@@ -40,6 +40,8 @@ bun run ci
 
 That validates Markdown frontmatter, typechecks Vue, builds the site, exports the field-card print pack, and writes `dist/release-manifest.json`.
 
+The browser app does not bundle the content repository. The build emits route-matching Markdown files such as `/cards.md` and `/cards/who-benefits.md`; the small Vue frontend fetches the current route plus `.md` and renders it with `marked`.
+
 ## Content Structure
 
 - `content/cards/`: short printable field cards.
@@ -48,12 +50,12 @@ That validates Markdown frontmatter, typechecks Vue, builds the site, exports th
 - `content/facilitator-notes/`: guidance for parents, teachers, and youth workers.
 - `governance/`: editorial process, moderation, review, and epistemic hygiene.
 - `scripts/`: validation, export, and provenance manifest scripts.
-- `src/`: Vue 3 Composition API site.
+- `src/`: Vue 3 Composition API shell that fetches route-matching Markdown and renders it with `marked`.
 - `ARCHITECTURE.md`: technical structure, build pipeline, provenance, and deployment notes.
 - `EDITORIAL_STYLE.md`: tone, design, scepticism, and accessibility guardrails.
 - `ROADMAP.md`: planned improvements after the first working vertical slice.
 
-Built pages link to copied source Markdown under `/source/content/...` and `/source/governance/...` so readers can inspect the text behind each rendered page even before a GitHub remote exists.
+Built pages link to their route Markdown, such as `/cards/who-benefits.md`. The build also copies source Markdown under `/source/content/...` and `/source/governance/...` for provenance and comparison.
 
 Markdown pages use this frontmatter:
 

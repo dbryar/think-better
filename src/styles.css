@@ -72,7 +72,7 @@ nav a {
   font-size: 0.94rem;
 }
 
-nav a.router-link-active {
+nav a[aria-current='page'] {
   color: #111;
   font-weight: 700;
 }
