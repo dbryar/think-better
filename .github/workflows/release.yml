@@ -1,0 +1,41 @@
+name: Release Artefacts
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build release artefacts
+        run: bun run ci
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/**
+
+      - name: Upload GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/release-manifest.json
+            dist/downloads/field-cards.md

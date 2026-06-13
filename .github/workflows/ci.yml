@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint content
+        run: bun run lint
+
+      - name: Check types
+        run: bun run check
+
+      - name: Build site
+        run: bun run build
+
+      - name: Export print pack
+        run: bun run export:pdf
+
+      - name: Generate manifest
+        run: bun run manifest
+
+      - name: Upload build artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: dist

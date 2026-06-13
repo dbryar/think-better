@@ -1,0 +1,11 @@
+/cards / 200
+/chapters / 200
+/examples / 200
+/facilitator-notes / 200
+/governance / 200
+/downloads / 200
+/cards/* / 200
+/chapters/* / 200
+/examples/* / 200
+/facilitator-notes/* / 200
+/governance/* / 200
