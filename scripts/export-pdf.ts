@@ -53,6 +53,10 @@ const html = `<!doctype html>
         line-height: 1.45;
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         background: #fbfaf6;
@@ -71,8 +75,8 @@ const html = `<!doctype html>
       }
 
       h1 {
-        font-size: 2.2rem;
-        line-height: 1.05;
+        font-size: 2.25rem;
+        line-height: 1.1;
         margin: 0 0 8px;
       }
 
@@ -113,8 +117,8 @@ const html = `<!doctype html>
       }
 
       .card h2 {
-        font-size: 1.6rem;
-        line-height: 1.1;
+        font-size: 1.45rem;
+        line-height: 1.15;
         margin: 0 0 8px;
       }
 
@@ -140,6 +144,30 @@ const html = `<!doctype html>
         margin-top: 7px;
       }
 
+      .card table {
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        margin: 16px 0;
+        width: 100%;
+      }
+
+      .card th,
+      .card td {
+        border: 1px solid #9e9787;
+        padding: 7px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .card th {
+        background: #ebe7dc;
+        font-weight: 800;
+      }
+
+      .card tbody tr:nth-child(even) {
+        background: #f5f3ec;
+      }
+
       footer {
         border-top: 1px solid #d9d5c8;
         color: #5b625c;
@@ -148,8 +176,8 @@ const html = `<!doctype html>
       }
 
       @page {
-        margin: 12mm;
-        size: A4;
+        margin: 10mm;
+        size: A4 landscape;
       }
 
       @media print {
@@ -172,14 +200,25 @@ const html = `<!doctype html>
 
         .cards {
           display: grid;
-          gap: 8mm;
+          gap: 0;
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .card {
           border: 1px solid #000;
-          min-height: 120mm;
+          border-radius: 0;
+          height: 188mm;
+          padding: 7mm;
           page-break-inside: avoid;
+        }
+
+        .card:nth-child(2n) {
+          break-after: page;
+        }
+
+        .card th,
+        .card td {
+          border-color: #000;
         }
       }
     </style>

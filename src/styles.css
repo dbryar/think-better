@@ -89,20 +89,22 @@ article {
 .hero h1,
 section h1,
 .article-header h1 {
-  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  font-size: 2.85rem;
   letter-spacing: 0;
-  line-height: 1.02;
+  line-height: 1.08;
   margin: 0 0 20px;
   max-width: 960px;
 }
 
 h2 {
-  font-size: clamp(1.35rem, 3vw, 2rem);
-  line-height: 1.15;
+  font-size: 1.75rem;
+  line-height: 1.2;
   margin: 0 0 14px;
 }
 
 h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
   margin: 0 0 8px;
 }
 
@@ -112,7 +114,7 @@ p {
 
 .subtitle {
   color: #3f463f;
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   max-width: 820px;
 }
 
@@ -267,6 +269,31 @@ dd {
   margin-top: 8px;
 }
 
+.prose table {
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 24px 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid #bfb8a6;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: #ebe7dc;
+  font-weight: 800;
+}
+
+.prose tbody tr:nth-child(even) {
+  background: #f5f3ec;
+}
+
 .site-footer {
   border-top: 1px solid #d9d5c8;
   color: #5b625c;
@@ -275,6 +302,21 @@ dd {
 }
 
 @media (max-width: 760px) {
+  .hero h1,
+  section h1,
+  .article-header h1 {
+    font-size: 2.15rem;
+    line-height: 1.12;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.18rem;
+  }
+
   .site-header {
     align-items: flex-start;
     flex-direction: column;
@@ -319,6 +361,11 @@ dd {
 
   a {
     color: #000;
+  }
+
+  .prose th,
+  .prose td {
+    border-color: #000;
   }
 
   .check-box,
