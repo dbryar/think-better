@@ -1,6 +1,7 @@
 {
   "name": "how-to-question-power",
   "version": "0.1.0",
+  "license": "CC-BY-SA-4.0",
   "type": "module",
   "private": true,
   "scripts": {

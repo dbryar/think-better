@@ -115,3 +115,7 @@ Tagged releases matching `v*` build the same artefacts and upload the manifest a
 Every content page includes print support. The release pipeline also creates `dist/downloads/field-cards.md`, a combined field-card print pack that can be converted to PDF later.
 
 This project is designed to be copied, printed, forked, mirrored, and criticised. Do not trust it because it sounds confident. Check it, improve it, argue with it, or discard what fails.
+
+## License
+
+This project is licensed under Creative Commons Attribution-ShareAlike 4.0 International (`CC-BY-SA-4.0`). Share and adapt it with attribution, and release adaptations under the same license.
