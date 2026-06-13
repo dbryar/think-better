@@ -45,10 +45,10 @@ The browser app does not bundle the content repository. The build emits route-ma
 Optional site variables:
 
 ```bash
-VITE_REPO_URL=https://github.com/dbryar/think-better
+VITE_REPO_URL=https://github.com/YOUR_ACCOUNT/YOUR_REPO
 ```
 
-`VITE_REPO_URL` controls generated repository links in the frontend, including the GitHub Issues link.
+`VITE_REPO_URL` controls generated repository links in the frontend, including the GitHub Issues link. GitHub Actions sets this automatically from the current repository so forks do not inherit the original repo URL.
 
 ## Content Structure
 
@@ -96,9 +96,7 @@ See `EDITORIAL_STYLE.md` and `governance/review-checklist.md` before adding or s
 
 ## Issues And Corrections
 
-Raise factual corrections, accessibility problems, design issues, and feature requests at:
-
-https://github.com/dbryar/think-better/issues
+Raise factual corrections, accessibility problems, design issues, and feature requests in this repository's GitHub Issues tab.
 
 ## Cloudflare Pages Deployment
 
@@ -110,8 +108,7 @@ When the GitHub remote exists:
 2. Add GitHub repository secrets:
    - `CLOUDFLARE_API_TOKEN`
    - `CLOUDFLARE_ACCOUNT_ID`
-3. Optionally add a GitHub repository variable named `VITE_REPO_URL` if the repository URL changes.
-4. Push or merge to `main`.
+3. Push or merge to `main`.
 
 The deploy workflow builds the site, generates downloadable artefacts and `release-manifest.json`, attests build provenance with GitHub artifact attestations, then deploys `dist` with Wrangler:
 

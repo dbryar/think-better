@@ -26,8 +26,8 @@ const links = [
   { href: '/downloads', label: 'Downloads' },
 ];
 
-const repositoryUrl = import.meta.env.VITE_REPO_URL ?? 'https://github.com/dbryar/think-better';
-const issuesUrl = `${repositoryUrl.replace(/\/$/, '')}/issues`;
+const repositoryUrl = import.meta.env.VITE_REPO_URL as string | undefined;
+const issuesUrl = repositoryUrl ? `${repositoryUrl.replace(/\/$/, '')}/issues` : '';
 const path = ref(window.location.pathname);
 const page = ref<PageData | null>(null);
 const error = ref('');
@@ -218,8 +218,10 @@ onBeforeUnmount(() => {
   <footer class="site-footer">
     <p>
       Public, inspectable, correctable civic-literacy material. Check it, fork it,
-      improve it, or discard what fails. Raise corrections or issues on
-      <a :href="issuesUrl">GitHub Issues</a>.
+      improve it, or discard what fails.
+      <span v-if="issuesUrl">
+        Raise corrections or issues on <a :href="issuesUrl">GitHub Issues</a>.
+      </span>
     </p>
   </footer>
 </template>

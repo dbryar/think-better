@@ -2,9 +2,7 @@
 
 This project accepts focused pull requests that improve the field guide, correct mistakes, or make the publishing pipeline easier to inspect.
 
-Use GitHub Issues for factual corrections, accessibility problems, design issues, and feature requests:
-
-https://github.com/dbryar/think-better/issues
+Use this repository's GitHub Issues tab for factual corrections, accessibility problems, design issues, and feature requests.
 
 Before opening a pull request:
 

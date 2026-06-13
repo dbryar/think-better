@@ -61,9 +61,9 @@ It then parses frontmatter with `yaml`, renders the body with `marked`, and inse
 
 The frontend reads Vite-exposed site variables at build time:
 
-- `VITE_REPO_URL`: canonical GitHub repository URL. Defaults to `https://github.com/dbryar/think-better`.
+- `VITE_REPO_URL`: canonical GitHub repository URL.
 
-Because the GitHub Action builds and uploads `dist/` directly, build-time site variables must be available to GitHub Actions, not only configured in Cloudflare Pages.
+GitHub Actions sets `VITE_REPO_URL` from the current repository with `${{ github.server_url }}/${{ github.repository }}`. That keeps forks from inheriting links to the upstream repository. Local builds may set `VITE_REPO_URL`; if omitted, repository-specific frontend links are hidden.
 
 ## Provenance
 
