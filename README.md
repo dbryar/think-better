@@ -49,6 +49,9 @@ That validates Markdown frontmatter, typechecks Vue, builds the site, exports th
 - `governance/`: editorial process, moderation, review, and epistemic hygiene.
 - `scripts/`: validation, export, and provenance manifest scripts.
 - `src/`: Vue 3 Composition API site.
+- `ARCHITECTURE.md`: technical structure, build pipeline, provenance, and deployment notes.
+- `EDITORIAL_STYLE.md`: tone, design, scepticism, and accessibility guardrails.
+- `ROADMAP.md`: planned improvements after the first working vertical slice.
 
 Built pages link to copied source Markdown under `/source/content/...` and `/source/governance/...` so readers can inspect the text behind each rendered page even before a GitHub remote exists.
 
@@ -78,6 +81,8 @@ Governance pages omit `type`; the site treats files in `governance/` as governan
 - No violence or dehumanisation.
 - No party endorsements in core material.
 - Include counterarguments and boring explanations where relevant.
+
+See `EDITORIAL_STYLE.md` and `governance/review-checklist.md` before adding or substantially changing core material.
 
 ## Cloudflare Pages Deployment
 
