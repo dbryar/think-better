@@ -22,7 +22,7 @@ The site avoids runtime server dependencies. Each readable route is materialized
 - `content/facilitator-notes/`: guidance for adults using the material with young people.
 - `governance/`: editorial principles, epistemic hygiene, moderation, contribution process, and review checklist.
 - `scripts/validate-content.ts`: validates Markdown frontmatter and body content.
-- `scripts/export-pdf.ts`: generates the v1 field-card print-pack placeholder.
+- `scripts/export-pdf.ts`: generates the browser-printable field-card pack and Markdown source.
 - `scripts/generate-manifest.ts`: writes `dist/release-manifest.json` with SHA-256 hashes.
 - `src/`: a thin Vue site shell that fetches route Markdown and renders it with `marked`.
 - `public/_redirects`: intentionally contains no SPA fallback so `.md` route assets remain directly fetchable.
@@ -56,6 +56,14 @@ It then parses frontmatter with `yaml`, renders the body with `marked`, and inse
 4. Generate route-matching Markdown files and physical route shells.
 5. Generate the field-card print pack.
 6. Generate the release manifest.
+
+## Site Variables
+
+The frontend reads Vite-exposed site variables at build time:
+
+- `VITE_REPO_URL`: canonical GitHub repository URL. Defaults to `https://github.com/dbryar/think-better`.
+
+Because the GitHub Action builds and uploads `dist/` directly, build-time site variables must be available to GitHub Actions, not only configured in Cloudflare Pages.
 
 ## Provenance
 

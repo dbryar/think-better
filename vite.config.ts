@@ -190,7 +190,8 @@ function downloadsPage(): string {
       tags: ['downloads', 'provenance'],
     },
     `
-- [Field Cards Print Pack](/downloads/field-cards.md): a combined Markdown pack for printing or converting to PDF.
+- [Field Cards Print Pack](/downloads/field-cards.html): a printable field-card pack laid out for browser printing.
+- [Field Cards Markdown Source](/downloads/field-cards.md): the generated Markdown source for the print pack.
 - [Release Manifest](/release-manifest.json): commit, timestamp, artefact paths, and SHA-256 hashes generated at build time.
 `,
   );

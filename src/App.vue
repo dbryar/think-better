@@ -26,6 +26,8 @@ const links = [
   { href: '/downloads', label: 'Downloads' },
 ];
 
+const repositoryUrl = import.meta.env.VITE_REPO_URL ?? 'https://github.com/dbryar/think-better';
+const issuesUrl = `${repositoryUrl.replace(/\/$/, '')}/issues`;
 const path = ref(window.location.pathname);
 const page = ref<PageData | null>(null);
 const error = ref('');
@@ -116,9 +118,12 @@ function onDocumentClick(event: MouseEvent) {
 
   const url = new URL(anchor.href);
   const isSameOrigin = url.origin === window.location.origin;
-  const isMarkdownAsset = url.pathname.endsWith('.md') || url.pathname.endsWith('.json');
+  const isStaticAsset =
+    url.pathname.endsWith('.md') ||
+    url.pathname.endsWith('.json') ||
+    url.pathname.endsWith('.html');
 
-  if (isSameOrigin && !isMarkdownAsset) {
+  if (isSameOrigin && !isStaticAsset) {
     event.preventDefault();
     navigate(url.pathname);
   }
@@ -213,7 +218,8 @@ onBeforeUnmount(() => {
   <footer class="site-footer">
     <p>
       Public, inspectable, correctable civic-literacy material. Check it, fork it,
-      improve it, or discard what fails.
+      improve it, or discard what fails. Raise corrections or issues on
+      <a :href="issuesUrl">GitHub Issues</a>.
     </p>
   </footer>
 </template>

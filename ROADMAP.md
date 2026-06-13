@@ -16,7 +16,7 @@ This roadmap preserves the project direction beyond the first working vertical s
 
 ## Version 0.2: Better Artefacts
 
-- Replace the Markdown print-pack placeholder with generated PDFs.
+- Add generated PDFs alongside the current browser-printable field-card HTML pack.
 - Generate one combined field-card PDF.
 - Generate printable zine-style packs for workshops and classrooms.
 - Add release downloads to the site in a way that distinguishes generated artefacts from source content.

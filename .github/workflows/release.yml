@@ -13,6 +13,8 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      VITE_REPO_URL: ${{ vars.VITE_REPO_URL || 'https://github.com/dbryar/think-better' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,4 +40,5 @@ jobs:
         with:
           files: |
             dist/release-manifest.json
+            dist/downloads/field-cards.html
             dist/downloads/field-cards.md

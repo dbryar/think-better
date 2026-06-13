@@ -42,6 +42,14 @@ That validates Markdown frontmatter, typechecks Vue, builds the site, exports th
 
 The browser app does not bundle the content repository. The build emits route-matching Markdown files such as `/cards.md` and `/cards/who-benefits.md`; the small Vue frontend fetches the current route plus `.md` and renders it with `marked`.
 
+Optional site variables:
+
+```bash
+VITE_REPO_URL=https://github.com/dbryar/think-better
+```
+
+`VITE_REPO_URL` controls generated repository links in the frontend, including the GitHub Issues link.
+
 ## Content Structure
 
 - `content/cards/`: short printable field cards.
@@ -86,6 +94,12 @@ Governance pages omit `type`; the site treats files in `governance/` as governan
 
 See `EDITORIAL_STYLE.md` and `governance/review-checklist.md` before adding or substantially changing core material.
 
+## Issues And Corrections
+
+Raise factual corrections, accessibility problems, design issues, and feature requests at:
+
+https://github.com/dbryar/think-better/issues
+
 ## Cloudflare Pages Deployment
 
 This repo is configured for Cloudflare Pages with Vite output in `dist`.
@@ -96,7 +110,8 @@ When the GitHub remote exists:
 2. Add GitHub repository secrets:
    - `CLOUDFLARE_API_TOKEN`
    - `CLOUDFLARE_ACCOUNT_ID`
-3. Push or merge to `main`.
+3. Optionally add a GitHub repository variable named `VITE_REPO_URL` if the repository URL changes.
+4. Push or merge to `main`.
 
 The deploy workflow builds the site, generates downloadable artefacts and `release-manifest.json`, attests build provenance with GitHub artifact attestations, then deploys `dist` with Wrangler:
 
@@ -119,7 +134,7 @@ Tagged releases matching `v*` build the same artefacts and upload the manifest a
 
 ## Printing, Sharing, Forking
 
-Every content page includes print support. The release pipeline also creates `dist/downloads/field-cards.md`, a combined field-card print pack that can be converted to PDF later.
+Every content page includes print support. The release pipeline also creates `dist/downloads/field-cards.html`, a browser-printable field-card pack, plus `dist/downloads/field-cards.md` as generated source.
 
 This project is designed to be copied, printed, forked, mirrored, and criticised. Do not trust it because it sounds confident. Check it, improve it, argue with it, or discard what fails.
 
